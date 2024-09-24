@@ -27,7 +27,7 @@
 
     let timeGoal = 60
     let accGoal = 90
-    let wordGoal = 5
+    let wordGoal = 100
 
     let entries = [
       {
@@ -180,7 +180,7 @@
       <Input type="number" id="timeSpent" placeholder="0 minutes" bind:value={entries[currentIndex].minutes} />
     </div>
     <div class="pb-3">
-      <Label for="accuracy">Accuracy</Label>
+      <Label for="accuracy">Accuracy <Badge variant={entries[currentIndex].accuracy >= accGoal ? "default" : "destructive"}>{entries[currentIndex].accuracy >= accGoal ? "Goal Met" : "Goal not met"}</Badge></Label>
       <Input type="number" id="accuracy" placeholder="0%" bind:value={entries[currentIndex].accuracy} />
     </div>
     <div class="pb-3">
@@ -209,7 +209,7 @@
           <Sheet.Header>
             <Sheet.Title>Manage your Goals</Sheet.Title>
             <Sheet.Description>
-              Make changes to your goals here. Click save when you're done.
+              Make changes to your goals here. Making changes to "Total Words" will change how many words must be added to reach Master in the progression bar. Click save when you're done.
             </Sheet.Description>
           </Sheet.Header>
           <div class="grid gap-4 py-4">
@@ -218,7 +218,7 @@
               <Input id="timeGoal" bind:value={timeGoal} class="col-span-3" />
             </div>
             <div class="grid grid-cols-4 items-center gap-4">
-              <Label for="accGoal" class="text-right">Average Accuracy</Label>
+              <Label for="accGoal" class="text-right">Accuracy</Label>
               <Input id="accGoal" bind:value={accGoal} class="col-span-3" />
             </div>
             <div class="grid grid-cols-4 items-center gap-4">
@@ -298,7 +298,7 @@
       <Label for="prog" class="">Basic</Label>
     </div>
     <div>
-      <Progress class="h-full w-1/6" style="transform:rotate(180deg)" value=30 id="prog" />
+      <Progress class="h-full w-1/6" style="transform:rotate(180deg)" value={totalWords / wordGoal * 100} id="prog" />
     </div>
   </div>
   
