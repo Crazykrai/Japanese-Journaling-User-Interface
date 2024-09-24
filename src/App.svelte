@@ -233,6 +233,33 @@
           </Sheet.Footer>
         </Sheet.Content>
       </Sheet.Root>
+      <Dialog.Root>
+        <Dialog.Trigger asChild let:builder><Button builders={[builder]} variant="outline">Add Word</Button></Dialog.Trigger>
+          <Dialog.Content>
+            <Dialog.Header>
+              <Dialog.Title>Add New Word</Dialog.Title>
+            </Dialog.Header>
+            <div class="pb-3">
+              <Label for="word">Word</Label>
+              <Input type="text" id="word" placeholder="" bind:value={addWordText}/>
+            </div>
+            <div class="pb-3">
+              <Label for="hiragana">Hiragana</Label>
+              <Input type="text" id="hiragana" placeholder="" bind:value={addHiragana} />
+            </div>
+            <div class="pb-3">
+              <Label for="romanji">Romanji</Label>
+              <Input type="text" id="romanji" placeholder="" bind:value={addRomanji} />
+            </div>
+            <div class="pb-3">
+              <Label for="definition">Definition</Label>
+              <Textarea id="definition" placeholder="Meaning of the word" bind:value={addDefinition} />
+            </div>
+            <Dialog.Footer>
+              <Button type="submit" on:click={addWord}>Save</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+      </Dialog.Root>
       <Button size="default" variant="default" class="" on:click={onSave}>Save</Button>
     </div>
   </div>
@@ -243,38 +270,9 @@
       <Table.Header>
         <Table.Row>
           <Table.Head class="w-[100px]">Kanji</Table.Head>
-          <Table.Head>Hiragana</Table.Head>
-          <Table.Head>Romanji</Table.Head>
+          <Table.Head class="w-[200px]">Hiragana</Table.Head>
+          <Table.Head class="w-[150px]">Romanji</Table.Head>
           <Table.Head>Definition</Table.Head>
-          <Table.Head>
-            <Dialog.Root>
-              <Dialog.Trigger class="bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-full px-4 text-xl">+</Dialog.Trigger>
-                <Dialog.Content>
-                  <Dialog.Header>
-                    <Dialog.Title>Add New Word</Dialog.Title>
-                  </Dialog.Header>
-                  <div class="pb-3">
-                    <Label for="word">Word</Label>
-                    <Input type="text" id="word" placeholder="" bind:value={addWordText}/>
-                  </div>
-                  <div class="pb-3">
-                    <Label for="hiragana">Hiragana</Label>
-                    <Input type="text" id="hiragana" placeholder="" bind:value={addHiragana} />
-                  </div>
-                  <div class="pb-3">
-                    <Label for="romanji">Romanji</Label>
-                    <Input type="text" id="romanji" placeholder="" bind:value={addRomanji} />
-                  </div>
-                  <div class="pb-3">
-                    <Label for="definition">Definition</Label>
-                    <Textarea id="definition" placeholder="Meaning of the word" bind:value={addDefinition} />
-                  </div>
-                  <Dialog.Footer>
-                    <Button type="submit" on:click={addWord}>Save</Button>
-                  </Dialog.Footer>
-                </Dialog.Content>
-            </Dialog.Root>
-          </Table.Head>
         </Table.Row>
       </Table.Header>
       <Table.Body>
